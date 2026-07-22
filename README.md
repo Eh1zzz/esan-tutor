@@ -28,13 +28,21 @@ Build a *tiny* language model on the Esan corpus (nanoGPT / makemore style).
   the *learning* engine.)
 
 ### Phase 2 — The actual tutor
-Stand on existing models to get something genuinely useful.
-- **Option A — fine-tune:** LoRA-fine-tune a small open multilingual model on the
-  Esan pairs (teaches datasets, PEFT, evaluation).
-- **Option B — retrieval (RAG):** wrap a strong hosted LLM with the curated Esan
-  data (fastest path to a good tutor).
-- Tutor features: vocab drills, translation practice, corrections, simple conversation.
-- **Deliverable:** a usable Esan tutor.
+Stand on the dataset (and, later, existing models) to get something useful.
+
+**v1 — data-driven tutor (built, runs now):** `python src/esan/tutor.py`
+An interactive CLI that drills you on Esan straight from `data/clean/`:
+flashcards, multiple-choice quiz, numbers drill, and lookup. No GPU, no API key.
+This is a genuinely usable learning tool today.
+
+**v2 — LLM-backed conversational tutor (next):** two routes, both reusing the same data —
+- **Retrieval (RAG):** embed the vocab/corpus, retrieve what's relevant to your
+  question, and let a strong LLM (e.g. Claude) explain/converse grounded in real
+  Esan data. Fastest path to a *smart* tutor. Needs an API key.
+- **Fine-tune (LoRA):** adapt a small pretrained multilingual model on
+  `vocab.csv` + `pairs.jsonl` (teaches datasets, PEFT, evaluation). The dataset
+  is thin, so this is more a learning exercise than a great model — for now.
+- **Deliverable:** a conversational Esan tutor.
 
 ## Workflow
 - **Data prep + code:** local, in this repo.
