@@ -1,0 +1,10 @@
+# Phase 0 — data extraction + prep (runs locally; Python 3.10+)
+pdfplumber>=0.11      # text + table extraction from the textbook PDF
+PyMuPDF>=1.24         # fallback/alt PDF extractor (import as: fitz)
+pandas>=2.0           # tabular data (vocab.csv etc.)
+
+# Phase 1 — the from-scratch tiny GPT (src/esan/tinygpt.py). Colab already has
+# torch; install locally only if you want to run/experiment off-Colab (CPU is fine
+# for this tiny model, just slower):
+#   torch>=2.2
+# Phase 2 (fine-tuning) will add: transformers, datasets, tokenizers, peft.
