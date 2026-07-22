@@ -1,0 +1,52 @@
+# Phase 2 v3 in Google Colab — LoRA fine-tune an Esan translator
+
+`src/esan/finetune_lora.py` fine-tunes **google/byt5-small** to translate
+English⇄Esan using **LoRA** (train tiny adapters, freeze the base model). A free
+T4 GPU finishes this in a few minutes.
+
+## 1. Open Colab with a GPU
+**Runtime → Change runtime type → T4 GPU → Save.**
+
+## 2. Get the repo + install deps
+```python
+!git clone https://github.com/Eh1zzz/esan-tutor.git
+%cd esan-tutor
+!pip install -q "transformers>=4.41" "peft>=0.11" "datasets>=2.19" accelerate
+```
+
+## 3. Build the data + train
+```python
+!python src/esan/build_finetune_data.py   # -> data/processed/finetune.jsonl (330 examples)
+!python src/esan/finetune_lora.py
+```
+
+## What to watch (the learning payoff)
+- **`trainable params`** printed at the start — LoRA trains a *tiny* fraction
+  (often <0.1%) of the model. That's the whole point of PEFT: adapt a big model
+  cheaply.
+- **train loss ↓ and eval loss ↓** over the 40 epochs — the adapter is learning
+  the dictionary. On this tiny set the two losses stay close because there's not
+  much to generalise *to* — it's mostly memorising the pairs (expected).
+- **The sample translations** at the end — `cow → ẹmena`, `water → amẹn`, etc.
+  Seeing a general-purpose model bend to output *your* language, from adapters
+  you trained on data *you* curated, is the payoff.
+
+## Why byte-level (ByT5)?
+Esan uses `ọ` and `ẹ` (dotted letters). A subword tokenizer (mT5, etc.) may not
+have those in its vocabulary and would map them to `<unk>` — the model literally
+can't see the difference between `ọ` and `o`. **ByT5 reads raw bytes**, so every
+character is represented exactly. For a low-resource language with special
+orthography, byte-level models remove a whole class of silent bugs.
+
+## Experiment
+- `r` (LoRA rank) and `target_modules` in `finetune_lora.py` → adapter capacity.
+- `num_train_epochs` → more passes = lower loss (until it just memorises).
+- Add more data upstream (grow `vocab.csv` / `pairs.jsonl`, re-run `normalize.py`
+  and `build_finetune_data.py`) — **this** is what actually improves the model.
+
+## Honest takeaway
+With ~330 examples this memorises a bilingual dictionary; it won't translate
+unseen sentences well. That's the real lesson of low-resource NLP: **the model is
+easy, the data is everything.** The path to a genuinely good Esan translator is
+more sentence pairs (from the textbook's dialogues, and from your speakers) — the
+same human-in-the-loop curation that built the dataset in the first place.

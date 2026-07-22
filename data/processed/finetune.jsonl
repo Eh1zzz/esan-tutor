@@ -1,0 +1,330 @@
+{"input": "translate English to Esan: native doctor", "target": "ọbo"}
+{"input": "translate Esan to English: ọbo", "target": "native doctor"}
+{"input": "translate English to Esan: monkey", "target": "ọsa"}
+{"input": "translate Esan to English: ọsa", "target": "monkey"}
+{"input": "translate English to Esan: corn", "target": "ọka"}
+{"input": "translate Esan to English: ọka", "target": "corn"}
+{"input": "translate English to Esan: capital letters", "target": "ene nẹ"}
+{"input": "translate Esan to English: ene nẹ", "target": "capital letters"}
+{"input": "translate English to Esan: small letters", "target": "eni khere"}
+{"input": "translate Esan to English: eni khere", "target": "small letters"}
+{"input": "translate English to Esan: king", "target": "ojie"}
+{"input": "translate Esan to English: ojie", "target": "king"}
+{"input": "translate English to Esan: clock", "target": "agogo"}
+{"input": "translate Esan to English: agogo", "target": "clock"}
+{"input": "translate English to Esan: stone", "target": "udo"}
+{"input": "translate Esan to English: udo", "target": "stone"}
+{"input": "translate English to Esan: axe", "target": "uze"}
+{"input": "translate Esan to English: uze", "target": "axe"}
+{"input": "translate English to Esan: house", "target": "uwa"}
+{"input": "translate Esan to English: uwa", "target": "house"}
+{"input": "translate English to Esan: revision", "target": "edọnmẹn"}
+{"input": "translate Esan to English: edọnmẹn", "target": "revision"}
+{"input": "translate English to Esan: water", "target": "amẹn"}
+{"input": "translate Esan to English: amẹn", "target": "water"}
+{"input": "translate English to Esan: sand", "target": "ekẹn"}
+{"input": "translate Esan to English: ekẹn", "target": "sand"}
+{"input": "translate English to Esan: grey hairs", "target": "edẹn"}
+{"input": "translate Esan to English: edẹn", "target": "grey hairs"}
+{"input": "translate English to Esan: coconut", "target": "uvin"}
+{"input": "translate Esan to English: uvin", "target": "coconut"}
+{"input": "translate English to Esan: palm tree", "target": "udin"}
+{"input": "translate Esan to English: udin", "target": "palm tree"}
+{"input": "translate English to Esan: palm fruits", "target": "ẹdin"}
+{"input": "translate Esan to English: ẹdin", "target": "palm fruits"}
+{"input": "translate English to Esan: wood", "target": "oran"}
+{"input": "translate Esan to English: oran", "target": "wood"}
+{"input": "translate English to Esan: coral bead", "target": "ẹkan"}
+{"input": "translate Esan to English: ẹkan", "target": "coral bead"}
+{"input": "translate English to Esan: squirrel", "target": "ọtan"}
+{"input": "translate Esan to English: ọtan", "target": "squirrel"}
+{"input": "translate English to Esan: dirt", "target": "itọn"}
+{"input": "translate Esan to English: itọn", "target": "dirt"}
+{"input": "translate English to Esan: night", "target": "asọn"}
+{"input": "translate Esan to English: asọn", "target": "night"}
+{"input": "translate English to Esan: baby", "target": "ọmọn"}
+{"input": "translate Esan to English: ọmọn", "target": "baby"}
+{"input": "translate English to Esan: waist", "target": "akun"}
+{"input": "translate Esan to English: akun", "target": "waist"}
+{"input": "translate English to Esan: mushroom", "target": "utun"}
+{"input": "translate Esan to English: utun", "target": "mushroom"}
+{"input": "translate English to Esan: mouth", "target": "unun"}
+{"input": "translate Esan to English: unun", "target": "mouth"}
+{"input": "translate English to Esan: goat", "target": "ẹbhe"}
+{"input": "translate Esan to English: ẹbhe", "target": "goat"}
+{"input": "translate English to Esan: you people", "target": "ibha"}
+{"input": "translate Esan to English: ibha", "target": "you people"}
+{"input": "translate English to Esan: people", "target": "ẹbholo"}
+{"input": "translate Esan to English: ẹbholo", "target": "people"}
+{"input": "translate English to Esan: farm", "target": "ugbo"}
+{"input": "translate Esan to English: ugbo", "target": "farm"}
+{"input": "translate English to Esan: fence", "target": "ogba"}
+{"input": "translate Esan to English: ogba", "target": "fence"}
+{"input": "translate English to Esan: slave", "target": "igbọn"}
+{"input": "translate Esan to English: igbọn", "target": "slave"}
+{"input": "translate English to Esan: trap", "target": "igbudu"}
+{"input": "translate Esan to English: igbudu", "target": "trap"}
+{"input": "translate English to Esan: body", "target": "egbe"}
+{"input": "translate Esan to English: egbe", "target": "body"}
+{"input": "translate English to Esan: pot", "target": "akhe"}
+{"input": "translate Esan to English: akhe", "target": "pot"}
+{"input": "translate English to Esan: fowl", "target": "ọkhọ"}
+{"input": "translate Esan to English: ọkhọ", "target": "fowl"}
+{"input": "translate English to Esan: door", "target": "ẹkhu"}
+{"input": "translate Esan to English: ẹkhu", "target": "door"}
+{"input": "translate English to Esan: fight", "target": "okhọnlẹn"}
+{"input": "translate Esan to English: okhọnlẹn", "target": "fight"}
+{"input": "translate English to Esan: pepper fruit", "target": "ọkhọn"}
+{"input": "translate Esan to English: ọkhọn", "target": "pepper fruit"}
+{"input": "translate English to Esan: cock", "target": "ọkpa"}
+{"input": "translate Esan to English: ọkpa", "target": "cock"}
+{"input": "translate English to Esan: cup", "target": "ukpu"}
+{"input": "translate Esan to English: ukpu", "target": "cup"}
+{"input": "translate English to Esan: bag", "target": "ẹkpa"}
+{"input": "translate Esan to English: ẹkpa", "target": "bag"}
+{"input": "translate English to Esan: masquerade", "target": "okpodu"}
+{"input": "translate Esan to English: okpodu", "target": "masquerade"}
+{"input": "translate English to Esan: man", "target": "okpẹa"}
+{"input": "translate Esan to English: okpẹa", "target": "man"}
+{"input": "translate English to Esan: respect", "target": "ọgho"}
+{"input": "translate Esan to English: ọgho", "target": "respect"}
+{"input": "translate English to Esan: money", "target": "igho"}
+{"input": "translate Esan to English: igho", "target": "money"}
+{"input": "translate English to Esan: procrastination", "target": "eghẹlẹ"}
+{"input": "translate Esan to English: eghẹlẹ", "target": "procrastination"}
+{"input": "translate English to Esan: time", "target": "ẹghele"}
+{"input": "translate Esan to English: ẹghele", "target": "time"}
+{"input": "translate English to Esan: vulture", "target": "ughulu"}
+{"input": "translate Esan to English: ughulu", "target": "vulture"}
+{"input": "translate English to Esan: counting numbers", "target": "iki eminlin"}
+{"input": "translate Esan to English: iki eminlin", "target": "counting numbers"}
+{"input": "translate English to Esan: kobo", "target": "ikọbọ"}
+{"input": "translate Esan to English: ikọbọ", "target": "kobo"}
+{"input": "translate English to Esan: five kobo", "target": "sisi"}
+{"input": "translate Esan to English: sisi", "target": "five kobo"}
+{"input": "translate English to Esan: lightning", "target": "avan"}
+{"input": "translate Esan to English: avan", "target": "lightning"}
+{"input": "translate English to Esan: dog", "target": "awa"}
+{"input": "translate Esan to English: awa", "target": "dog"}
+{"input": "translate English to Esan: dog", "target": "ekita"}
+{"input": "translate Esan to English: ekita", "target": "dog"}
+{"input": "translate English to Esan: goat", "target": "ẹwe"}
+{"input": "translate Esan to English: ẹwe", "target": "goat"}
+{"input": "translate English to Esan: sheep", "target": "oghogho"}
+{"input": "translate Esan to English: oghogho", "target": "sheep"}
+{"input": "translate English to Esan: ram", "target": "ohuan"}
+{"input": "translate Esan to English: ohuan", "target": "ram"}
+{"input": "translate English to Esan: hen", "target": "ọkhọkhọ"}
+{"input": "translate Esan to English: ọkhọkhọ", "target": "hen"}
+{"input": "translate English to Esan: cat", "target": "onogbo"}
+{"input": "translate Esan to English: onogbo", "target": "cat"}
+{"input": "translate English to Esan: duck", "target": "izagua"}
+{"input": "translate Esan to English: izagua", "target": "duck"}
+{"input": "translate English to Esan: cow", "target": "ẹmena"}
+{"input": "translate Esan to English: ẹmena", "target": "cow"}
+{"input": "translate English to Esan: cow", "target": "imenu"}
+{"input": "translate Esan to English: imenu", "target": "cow"}
+{"input": "translate English to Esan: pig", "target": "une"}
+{"input": "translate Esan to English: une", "target": "pig"}
+{"input": "translate English to Esan: pigeon", "target": "igbenekhukhu"}
+{"input": "translate Esan to English: igbenekhukhu", "target": "pigeon"}
+{"input": "translate English to Esan: parrot", "target": "ọkhuẹ"}
+{"input": "translate Esan to English: ọkhuẹ", "target": "parrot"}
+{"input": "translate English to Esan: horse", "target": "akasi"}
+{"input": "translate Esan to English: akasi", "target": "horse"}
+{"input": "translate English to Esan: turkey", "target": "tonotono"}
+{"input": "translate Esan to English: tonotono", "target": "turkey"}
+{"input": "translate English to Esan: antelope", "target": "uzo"}
+{"input": "translate Esan to English: uzo", "target": "antelope"}
+{"input": "translate English to Esan: deer", "target": "ẹruẹ"}
+{"input": "translate Esan to English: ẹruẹ", "target": "deer"}
+{"input": "translate English to Esan: grass cutter", "target": "okhuẹnlẹn"}
+{"input": "translate Esan to English: okhuẹnlẹn", "target": "grass cutter"}
+{"input": "translate English to Esan: tiger", "target": "atanakpa"}
+{"input": "translate Esan to English: atanakpa", "target": "tiger"}
+{"input": "translate English to Esan: fox", "target": "oriẹi"}
+{"input": "translate Esan to English: oriẹi", "target": "fox"}
+{"input": "translate English to Esan: elephant", "target": "eni"}
+{"input": "translate Esan to English: eni", "target": "elephant"}
+{"input": "translate English to Esan: wild pig", "target": "esi"}
+{"input": "translate Esan to English: esi", "target": "wild pig"}
+{"input": "translate English to Esan: lion", "target": "oduma"}
+{"input": "translate Esan to English: oduma", "target": "lion"}
+{"input": "translate English to Esan: monkey", "target": "emẹnlẹn"}
+{"input": "translate Esan to English: emẹnlẹn", "target": "monkey"}
+{"input": "translate English to Esan: monkey", "target": "obhele"}
+{"input": "translate Esan to English: obhele", "target": "monkey"}
+{"input": "translate English to Esan: moon", "target": "uki"}
+{"input": "translate Esan to English: uki", "target": "moon"}
+{"input": "translate English to Esan: buffalo", "target": "ọgberan"}
+{"input": "translate Esan to English: ọgberan", "target": "buffalo"}
+{"input": "translate English to Esan: porcupine", "target": "ọkhanlẹn"}
+{"input": "translate Esan to English: ọkhanlẹn", "target": "porcupine"}
+{"input": "translate English to Esan: guinea fowl", "target": "ikpin"}
+{"input": "translate Esan to English: ikpin", "target": "guinea fowl"}
+{"input": "translate English to Esan: scorpion", "target": "akpin"}
+{"input": "translate Esan to English: akpin", "target": "scorpion"}
+{"input": "translate English to Esan: rabbit", "target": "eluọ"}
+{"input": "translate Esan to English: eluọ", "target": "rabbit"}
+{"input": "translate English to Esan: rabbit", "target": "ọfiotọ"}
+{"input": "translate Esan to English: ọfiotọ", "target": "rabbit"}
+{"input": "translate English to Esan: python", "target": "urubhokho"}
+{"input": "translate Esan to English: urubhokho", "target": "python"}
+{"input": "translate English to Esan: bird", "target": "afianmẹn"}
+{"input": "translate Esan to English: afianmẹn", "target": "bird"}
+{"input": "translate English to Esan: chameleon", "target": "alokhin"}
+{"input": "translate Esan to English: alokhin", "target": "chameleon"}
+{"input": "translate English to Esan: hawk", "target": "ahiẹnlẹnkpẹn"}
+{"input": "translate Esan to English: ahiẹnlẹnkpẹn", "target": "hawk"}
+{"input": "translate English to Esan: hawk", "target": "ahuan"}
+{"input": "translate Esan to English: ahuan", "target": "hawk"}
+{"input": "translate English to Esan: tortoise", "target": "ei"}
+{"input": "translate Esan to English: ei", "target": "tortoise"}
+{"input": "translate English to Esan: folk tale", "target": "ọkha"}
+{"input": "translate Esan to English: ọkha", "target": "folk tale"}
+{"input": "translate English to Esan: back", "target": "uhọnmọn"}
+{"input": "translate Esan to English: uhọnmọn", "target": "back"}
+{"input": "translate English to Esan: woman", "target": "okhuo"}
+{"input": "translate Esan to English: okhuo", "target": "woman"}
+{"input": "translate English to Esan: local pear", "target": "olumun"}
+{"input": "translate Esan to English: olumun", "target": "local pear"}
+{"input": "translate English to Esan: baby (in arms)", "target": "ọmọn obọ"}
+{"input": "translate Esan to English: ọmọn obọ", "target": "baby (in arms)"}
+{"input": "translate English to Esan: infant", "target": "okhan"}
+{"input": "translate Esan to English: okhan", "target": "infant"}
+{"input": "translate English to Esan: old man", "target": "edọnman"}
+{"input": "translate Esan to English: edọnman", "target": "old man"}
+{"input": "translate English to Esan: king", "target": "ọnojie"}
+{"input": "translate Esan to English: ọnojie", "target": "king"}
+{"input": "translate English to Esan: beaded crown", "target": "emuada"}
+{"input": "translate Esan to English: emuada", "target": "beaded crown"}
+{"input": "translate English to Esan: ceremonial sword", "target": "ada"}
+{"input": "translate Esan to English: ada", "target": "ceremonial sword"}
+{"input": "translate English to Esan: ceremonial staff", "target": "eben"}
+{"input": "translate Esan to English: eben", "target": "ceremonial staff"}
+{"input": "translate English to Esan: servant", "target": "ọviẹn"}
+{"input": "translate Esan to English: ọviẹn", "target": "servant"}
+{"input": "translate English to Esan: bicycle", "target": "ikẹnkẹn"}
+{"input": "translate Esan to English: ikẹnkẹn", "target": "bicycle"}
+{"input": "translate English to Esan: plate", "target": "ukpọnmanku"}
+{"input": "translate Esan to English: ukpọnmanku", "target": "plate"}
+{"input": "translate English to Esan: 0", "target": "ihoi"}
+{"input": "translate Esan to English: ihoi", "target": "0"}
+{"input": "translate English to Esan: 0", "target": "ihohoo"}
+{"input": "translate Esan to English: ihohoo", "target": "0"}
+{"input": "translate English to Esan: 0.5", "target": "ukhiọnmẹn"}
+{"input": "translate Esan to English: ukhiọnmẹn", "target": "0.5"}
+{"input": "translate English to Esan: 1", "target": "ọkpa"}
+{"input": "translate Esan to English: ọkpa", "target": "1"}
+{"input": "translate English to Esan: 1", "target": "ọọ"}
+{"input": "translate Esan to English: ọọ", "target": "1"}
+{"input": "translate English to Esan: 2", "target": "eva"}
+{"input": "translate Esan to English: eva", "target": "2"}
+{"input": "translate English to Esan: 3", "target": "ea"}
+{"input": "translate Esan to English: ea", "target": "3"}
+{"input": "translate English to Esan: 4", "target": "enẹn"}
+{"input": "translate Esan to English: enẹn", "target": "4"}
+{"input": "translate English to Esan: 5", "target": "isẹn"}
+{"input": "translate Esan to English: isẹn", "target": "5"}
+{"input": "translate English to Esan: 6", "target": "ehan"}
+{"input": "translate Esan to English: ehan", "target": "6"}
+{"input": "translate English to Esan: 7", "target": "ihiọn"}
+{"input": "translate Esan to English: ihiọn", "target": "7"}
+{"input": "translate English to Esan: 7", "target": "ihilọn"}
+{"input": "translate Esan to English: ihilọn", "target": "7"}
+{"input": "translate English to Esan: 8", "target": "elẹnlẹn"}
+{"input": "translate Esan to English: elẹnlẹn", "target": "8"}
+{"input": "translate English to Esan: 9", "target": "isinlin"}
+{"input": "translate Esan to English: isinlin", "target": "9"}
+{"input": "translate English to Esan: 10", "target": "igbe"}
+{"input": "translate Esan to English: igbe", "target": "10"}
+{"input": "translate English to Esan: 11", "target": "ugbolọo"}
+{"input": "translate Esan to English: ugbolọo", "target": "11"}
+{"input": "translate English to Esan: 12", "target": "igbeva"}
+{"input": "translate Esan to English: igbeva", "target": "12"}
+{"input": "translate English to Esan: 13", "target": "igbelea"}
+{"input": "translate Esan to English: igbelea", "target": "13"}
+{"input": "translate English to Esan: 14", "target": "igbenẹn"}
+{"input": "translate Esan to English: igbenẹn", "target": "14"}
+{"input": "translate English to Esan: 15", "target": "igbehẹnlẹn"}
+{"input": "translate Esan to English: igbehẹnlẹn", "target": "15"}
+{"input": "translate English to Esan: 16", "target": "enẹn ribhi ujie"}
+{"input": "translate Esan to English: enẹn ribhi ujie", "target": "16"}
+{"input": "translate English to Esan: 17", "target": "ea ribhi ujie"}
+{"input": "translate Esan to English: ea ribhi ujie", "target": "17"}
+{"input": "translate English to Esan: 18", "target": "eva ribhi ujie"}
+{"input": "translate Esan to English: eva ribhi ujie", "target": "18"}
+{"input": "translate English to Esan: 19", "target": "ọkpa ribhi ujie"}
+{"input": "translate Esan to English: ọkpa ribhi ujie", "target": "19"}
+{"input": "translate English to Esan: 20", "target": "ujie"}
+{"input": "translate Esan to English: ujie", "target": "20"}
+{"input": "translate English to Esan: 20", "target": "ọgbọlọ"}
+{"input": "translate Esan to English: ọgbọlọ", "target": "20"}
+{"input": "translate English to Esan: 20", "target": "uhe"}
+{"input": "translate Esan to English: uhe", "target": "20"}
+{"input": "translate English to Esan: 20", "target": "ue"}
+{"input": "translate Esan to English: ue", "target": "20"}
+{"input": "translate English to Esan: 21", "target": "ọkpa yan ujie"}
+{"input": "translate Esan to English: ọkpa yan ujie", "target": "21"}
+{"input": "translate English to Esan: 22", "target": "eva yan ujie"}
+{"input": "translate Esan to English: eva yan ujie", "target": "22"}
+{"input": "translate English to Esan: 23", "target": "ea yan ujie"}
+{"input": "translate Esan to English: ea yan ujie", "target": "23"}
+{"input": "translate English to Esan: 24", "target": "enẹn yan ujie"}
+{"input": "translate Esan to English: enẹn yan ujie", "target": "24"}
+{"input": "translate English to Esan: 25", "target": "isẹn yan ujie"}
+{"input": "translate Esan to English: isẹn yan ujie", "target": "25"}
+{"input": "translate English to Esan: 26", "target": "ehan yan ujie"}
+{"input": "translate Esan to English: ehan yan ujie", "target": "26"}
+{"input": "translate English to Esan: 27", "target": "ihiọn yan ujie"}
+{"input": "translate Esan to English: ihiọn yan ujie", "target": "27"}
+{"input": "translate English to Esan: 28", "target": "elẹnlẹn yan ujie"}
+{"input": "translate Esan to English: elẹnlẹn yan ujie", "target": "28"}
+{"input": "translate English to Esan: 29", "target": "isinlin yan ujie"}
+{"input": "translate Esan to English: isinlin yan ujie", "target": "29"}
+{"input": "translate English to Esan: 30", "target": "ọgban"}
+{"input": "translate Esan to English: ọgban", "target": "30"}
+{"input": "translate English to Esan: 31", "target": "ọkpa yan ọgban"}
+{"input": "translate Esan to English: ọkpa yan ọgban", "target": "31"}
+{"input": "translate English to Esan: 32", "target": "eva yan ọgban"}
+{"input": "translate Esan to English: eva yan ọgban", "target": "32"}
+{"input": "translate English to Esan: 33", "target": "ea yan ọgban"}
+{"input": "translate Esan to English: ea yan ọgban", "target": "33"}
+{"input": "translate English to Esan: 34", "target": "enẹn yan ọgban"}
+{"input": "translate Esan to English: enẹn yan ọgban", "target": "34"}
+{"input": "translate English to Esan: 35", "target": "isẹn yan ọgban"}
+{"input": "translate Esan to English: isẹn yan ọgban", "target": "35"}
+{"input": "translate English to Esan: 40", "target": "egbọlọ eva"}
+{"input": "translate Esan to English: egbọlọ eva", "target": "40"}
+{"input": "translate English to Esan: 40", "target": "uheva"}
+{"input": "translate Esan to English: uheva", "target": "40"}
+{"input": "translate English to Esan: 45", "target": "isẹn yan egbọlọ eva"}
+{"input": "translate Esan to English: isẹn yan egbọlọ eva", "target": "45"}
+{"input": "translate English to Esan: 50", "target": "igbe yan egbọlọ eva"}
+{"input": "translate Esan to English: igbe yan egbọlọ eva", "target": "50"}
+{"input": "translate English to Esan: 50", "target": "ikigbesi iyeha"}
+{"input": "translate Esan to English: ikigbesi iyeha", "target": "50"}
+{"input": "translate English to Esan: 60", "target": "egbọlọ ea"}
+{"input": "translate Esan to English: egbọlọ ea", "target": "60"}
+{"input": "translate English to Esan: 60", "target": "iyieha"}
+{"input": "translate Esan to English: iyieha", "target": "60"}
+{"input": "translate English to Esan: 70", "target": "igbe yan egbọlọ ea"}
+{"input": "translate Esan to English: igbe yan egbọlọ ea", "target": "70"}
+{"input": "translate English to Esan: 70", "target": "ikigbesi iyenẹn"}
+{"input": "translate Esan to English: ikigbesi iyenẹn", "target": "70"}
+{"input": "translate English to Esan: 80", "target": "egbọlọ enẹn"}
+{"input": "translate Esan to English: egbọlọ enẹn", "target": "80"}
+{"input": "translate English to Esan: 80", "target": "iyenẹn"}
+{"input": "translate Esan to English: iyenẹn", "target": "80"}
+{"input": "translate English to Esan: 90", "target": "igbe yan egbọlọ enẹn"}
+{"input": "translate Esan to English: igbe yan egbọlọ enẹn", "target": "90"}
+{"input": "translate English to Esan: 90", "target": "ikigbe si iyisẹn"}
+{"input": "translate Esan to English: ikigbe si iyisẹn", "target": "90"}
+{"input": "translate English to Esan: 100", "target": "egbọlọ isẹn"}
+{"input": "translate Esan to English: egbọlọ isẹn", "target": "100"}
+{"input": "translate English to Esan: 100", "target": "iyisẹn"}
+{"input": "translate Esan to English: iyisẹn", "target": "100"}
+{"input": "translate English to Esan: He did not come", "target": "Ọ bha vae"}
+{"input": "translate Esan to English: Ọ bha vae", "target": "He did not come"}
+{"input": "translate English to Esan: It is available", "target": "Ọribhọ"}
+{"input": "translate Esan to English: Ọribhọ", "target": "It is available"}

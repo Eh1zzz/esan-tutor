@@ -42,11 +42,16 @@ Claude *all* of it as ground truth every turn (the honest "RAG" for a tiny corpu
 Claude teaches and converses; the data stops it inventing Esan it doesn't know.
 Needs `pip install anthropic` and `ANTHROPIC_API_KEY` set in your environment.
 
-**v3 — fine-tune (LoRA), later:** adapt a small pretrained multilingual model on
-`vocab.csv` + `pairs.jsonl` (teaches datasets, PEFT, evaluation). The dataset is
-thin, so this is more a learning exercise than a great model — for now.
+**v3 — fine-tune (LoRA), built:** `src/esan/build_finetune_data.py` →
+`src/esan/finetune_lora.py`. Adapts **google/byt5-small** (byte-level → no
+tokenizer gaps for ọ/ẹ) to translate English⇄Esan with LoRA/PEFT. Teaches base
+models, adapters, the seq2seq training loop, and evaluation. Runs on a free Colab
+GPU — see `notebooks/phase2_lora_colab.md`. The dataset is thin, so it mostly
+memorises the dictionary: a *learning* exercise, and a live demo of "the model is
+easy, the data is everything."
 
-- **Deliverable:** a conversational Esan tutor. ✅
+- **Deliverable:** a conversational Esan tutor ✅ + a from-scratch LM ✅ + a
+  LoRA-fine-tuned translator ✅.
 
 ## Workflow
 - **Data prep + code:** local, in this repo.
