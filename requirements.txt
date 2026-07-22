@@ -7,4 +7,7 @@ pandas>=2.0           # tabular data (vocab.csv etc.)
 # torch; install locally only if you want to run/experiment off-Colab (CPU is fine
 # for this tiny model, just slower):
 #   torch>=2.2
-# Phase 2 (fine-tuning) will add: transformers, datasets, tokenizers, peft.
+# Phase 2 v2 — conversational tutor (src/esan/tutor_llm.py): the official Anthropic SDK.
+# Set ANTHROPIC_API_KEY in your environment before running it.
+anthropic>=0.40
+# Phase 2 fine-tuning (later) will add: transformers, datasets, tokenizers, peft.

@@ -35,14 +35,18 @@ An interactive CLI that drills you on Esan straight from `data/clean/`:
 flashcards, multiple-choice quiz, numbers drill, and lookup. No GPU, no API key.
 This is a genuinely usable learning tool today.
 
-**v2 — LLM-backed conversational tutor (next):** two routes, both reusing the same data —
-- **Retrieval (RAG):** embed the vocab/corpus, retrieve what's relevant to your
-  question, and let a strong LLM (e.g. Claude) explain/converse grounded in real
-  Esan data. Fastest path to a *smart* tutor. Needs an API key.
-- **Fine-tune (LoRA):** adapt a small pretrained multilingual model on
-  `vocab.csv` + `pairs.jsonl` (teaches datasets, PEFT, evaluation). The dataset
-  is thin, so this is more a learning exercise than a great model — for now.
-- **Deliverable:** a conversational Esan tutor.
+**v2 — LLM-backed conversational tutor (built):** `python src/esan/tutor_llm.py`
+A chat tutor powered by **Claude**, grounded in your dataset. The whole curated
+dataset is small enough to fit in the prompt, so retrieval is trivial — we hand
+Claude *all* of it as ground truth every turn (the honest "RAG" for a tiny corpus).
+Claude teaches and converses; the data stops it inventing Esan it doesn't know.
+Needs `pip install anthropic` and `ANTHROPIC_API_KEY` set in your environment.
+
+**v3 — fine-tune (LoRA), later:** adapt a small pretrained multilingual model on
+`vocab.csv` + `pairs.jsonl` (teaches datasets, PEFT, evaluation). The dataset is
+thin, so this is more a learning exercise than a great model — for now.
+
+- **Deliverable:** a conversational Esan tutor. ✅
 
 ## Workflow
 - **Data prep + code:** local, in this repo.
