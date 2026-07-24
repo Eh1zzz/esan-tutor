@@ -75,7 +75,7 @@ def main() -> None:
         output_dir=str(OUT),
         per_device_train_batch_size=8,
         learning_rate=3e-4,         # standard T5 full-fine-tune LR
-        num_train_epochs=50,
+        num_train_epochs=120,       # 50 got loss to ~0.35 and still falling → more passes to fully memorise
         logging_steps=25,
         save_strategy="no",
         report_to="none",

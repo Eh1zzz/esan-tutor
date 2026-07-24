@@ -24,8 +24,9 @@ A free T4 GPU finishes it in ~15 minutes.
 ```
 
 ## What to watch (the learning payoff)
-- **train loss ↓ toward ~0** over the 50 epochs — full fine-tuning can actually
-  drive the loss down (LoRA floored at ~0.8; see below). There's deliberately **no
+- **train loss ↓ toward ~0** over the 120 epochs, aiming well under ~0.2 — full
+  fine-tuning can actually drive the loss down (LoRA floored at ~0.8; see below).
+  At loss ~0.35 the translations are mostly right; near ~0.1 they lock in. There's deliberately **no
   eval set**: a bilingual dictionary has nothing to generalise to (an unseen word
   can't be inferred), so a held-out split just measures the impossible. Training on
   everything is the honest move — memorisation is the goal here, not a bug.
