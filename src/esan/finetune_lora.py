@@ -101,7 +101,7 @@ def main() -> None:
         train_dataset=tokenized["train"],
         eval_dataset=tokenized["test"],
         data_collator=collator,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,   # transformers >=4.46 renamed this from tokenizer=
     )
     trainer.train()
 

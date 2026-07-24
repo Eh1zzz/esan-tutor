@@ -11,7 +11,7 @@ T4 GPU finishes this in a few minutes.
 ```python
 !git clone https://github.com/Eh1zzz/esan-tutor.git
 %cd esan-tutor
-!pip install -q "transformers>=4.41" "peft>=0.11" "datasets>=2.19" accelerate
+!pip install -q "transformers>=4.46" "peft>=0.11" "datasets>=2.19" accelerate
 !pip uninstall -q -y torchao   # Colab ships an old torchao that trips PEFT's version check; we don't use it
 ```
 
