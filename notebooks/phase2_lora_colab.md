@@ -12,7 +12,12 @@ T4 GPU finishes this in a few minutes.
 !git clone https://github.com/Eh1zzz/esan-tutor.git
 %cd esan-tutor
 !pip install -q "transformers>=4.41" "peft>=0.11" "datasets>=2.19" accelerate
+!pip uninstall -q -y torchao   # Colab ships an old torchao that trips PEFT's version check; we don't use it
 ```
+
+> **If you see `ImportError: Found an incompatible version of torchao`** — that's
+> the line above fixing it. `torchao` (low-bit quantization) isn't needed here;
+> removing it makes PEFT's check pass.
 
 ## 3. Build the data + train
 ```python
