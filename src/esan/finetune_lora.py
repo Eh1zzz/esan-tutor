@@ -44,7 +44,7 @@ except Exception:
     pass
 
 BASE = "google/byt5-small"
-MAX_LEN = 64
+MAX_LEN = 128  # byte-level → more bytes per word/sentence than a subword model
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data" / "processed" / "finetune.jsonl"
 OUT = ROOT / "checkpoints" / "esan-byt5-lora"
@@ -57,21 +57,24 @@ def main() -> None:
     tokenizer = AutoTokenizer.from_pretrained(BASE)
     model = AutoModelForSeq2SeqLM.from_pretrained(BASE)
 
-    # LoRA: keep the base model frozen, inject trainable low-rank matrices into the
-    # attention query/value projections. Only these adapters learn.
+    # LoRA: keep the base model frozen, inject trainable low-rank matrices. We
+    # target every attention AND feed-forward projection (q,k,v,o,wi,wo) at rank
+    # 32 so the adapters have enough capacity to actually MEMORISE the dictionary.
+    # (r=8 on just q,v — the textbook default — was too small here and underfit.)
     lora = LoraConfig(
         task_type=TaskType.SEQ_2_SEQ_LM,
-        r=8,                       # rank of the adapters (small = few params)
-        lora_alpha=16,
+        r=32,
+        lora_alpha=64,
         lora_dropout=0.05,
-        target_modules=["q", "v"],  # T5 attention query & value projections
+        target_modules=["q", "k", "v", "o", "wi_0", "wi_1", "wo"],
     )
     model = get_peft_model(model, lora)
-    model.print_trainable_parameters()   # e.g. "trainable: ~150K / 300M (0.05%)"
+    model.print_trainable_parameters()
 
-    ds = load_dataset("json", data_files=str(DATA))["train"].train_test_split(
-        test_size=0.1, seed=42
-    )
+    # A bilingual dictionary has nothing to "generalise" to — an unseen word can't
+    # be inferred — so we train on ALL of it. This model MEMORISES the dictionary;
+    # here that's the goal, not overfitting to guard against.
+    ds = load_dataset("json", data_files=str(DATA))["train"]
 
     def preprocess(batch):
         enc = tokenizer(batch["input"], max_length=MAX_LEN, truncation=True)
@@ -80,26 +83,22 @@ def main() -> None:
         )["input_ids"]
         return enc
 
-    tokenized = ds.map(preprocess, batched=True, remove_columns=ds["train"].column_names)
+    tokenized = ds.map(preprocess, batched=True, remove_columns=ds.column_names)
     collator = DataCollatorForSeq2Seq(tokenizer, model=model)
 
     args = Seq2SeqTrainingArguments(
         output_dir=str(OUT),
         per_device_train_batch_size=16,
-        per_device_eval_batch_size=16,
         learning_rate=3e-4,
-        num_train_epochs=40,        # tiny data → many passes to actually learn it
-        logging_steps=20,
-        eval_strategy="epoch",      # (older transformers: evaluation_strategy)
+        num_train_epochs=100,       # tiny data → many passes to fully memorise it
+        logging_steps=25,
         save_strategy="no",
-        predict_with_generate=True,
         report_to="none",
     )
     trainer = Seq2SeqTrainer(
         model=model,
         args=args,
-        train_dataset=tokenized["train"],
-        eval_dataset=tokenized["test"],
+        train_dataset=tokenized,
         data_collator=collator,
         processing_class=tokenizer,   # transformers >=4.46 renamed this from tokenizer=
     )
@@ -120,10 +119,10 @@ def main() -> None:
         out = model.generate(**ids, max_new_tokens=32)
         return tokenizer.decode(out[0], skip_special_tokens=True)
 
-    print("\n── sample translations ──")
-    for w in ["cow", "water", "king", "goat"]:
+    print("\n── sample translations (all from the training dictionary) ──")
+    for w in ["cow", "water", "king", "goat", "moon", "money"]:
         print(f"  EN→ES  {w:12} -> {translate(w, True)}")
-    for w in ["amẹn", "ẹmena"]:
+    for w in ["amẹn", "ẹmena", "uki"]:
         print(f"  ES→EN  {w:12} -> {translate(w, False)}")
 
 

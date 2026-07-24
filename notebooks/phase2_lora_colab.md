@@ -29,9 +29,11 @@ T4 GPU finishes this in a few minutes.
 - **`trainable params`** printed at the start — LoRA trains a *tiny* fraction
   (often <0.1%) of the model. That's the whole point of PEFT: adapt a big model
   cheaply.
-- **train loss ↓ and eval loss ↓** over the 40 epochs — the adapter is learning
-  the dictionary. On this tiny set the two losses stay close because there's not
-  much to generalise *to* — it's mostly memorising the pairs (expected).
+- **train loss ↓** over the 100 epochs, ideally well below ~0.5 — the adapter is
+  memorising the dictionary. There's deliberately **no eval set**: a bilingual
+  dictionary has nothing to generalise to (an unseen word can't be inferred), so
+  a held-out split just measures the impossible. Training on everything is the
+  honest move, and memorisation is the goal here — not a bug.
 - **The sample translations** at the end — `cow → ẹmena`, `water → amẹn`, etc.
   Seeing a general-purpose model bend to output *your* language, from adapters
   you trained on data *you* curated, is the payoff.
