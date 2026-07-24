@@ -13,11 +13,13 @@ What you'll learn here — the machinery behind every "fine-tuned" model:
 Honest expectation: with ~330 examples the model will largely **memorise** the
 dictionary rather than generalise. That's fine — the goal is the *method*.
 
-Base = google/mt5-small: a multilingual T5. Its subword tokenizer encodes each
-word in just 2–4 pieces, so a small dictionary is easy to memorise. We verified it
-keeps Esan's ọ and ẹ intact (no <unk>) — mT5 trained on Yoruba/Igbo, which use the
-same dotted letters. (ByT5, byte-level, is <unk>-proof but needs long byte
-sequences per word — too hard to memorise from ~330 examples; it underfit.)
+Base = google/byt5-small: a byte-level T5, so Esan's ọ/ẹ are exact AND its tiny
+vocabulary means the output head isn't a bottleneck. (We also tried subword
+mt5-small; it plateaued at a *higher* loss — its 250K-token frozen output head
+can't easily emit rare Esan pieces. ByT5 got closer.) The earlier "gibberish" was
+underfitting — the model learned the prior and ignored the input. Two fixes:
+(a) also train the output head (`modules_to_save`, cheap on ByT5), and (b) a
+higher learning rate, so the loss reaches near zero instead of stalling.
 
 Run (Colab T4 recommended — see notebooks/phase2_lora_colab.md):
     pip install "transformers>=4.41" "peft>=0.11" "datasets>=2.19" accelerate
@@ -45,8 +47,8 @@ try:
 except Exception:
     pass
 
-BASE = "google/mt5-small"  # subword multilingual T5; keeps ọ/ẹ intact (verified)
-MAX_LEN = 64
+BASE = "google/byt5-small"  # byte-level: ọ/ẹ exact, tiny vocab (output head not a bottleneck)
+MAX_LEN = 128
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data" / "processed" / "finetune.jsonl"
 OUT = ROOT / "checkpoints" / "esan-byt5-lora"
@@ -69,6 +71,7 @@ def main() -> None:
         lora_alpha=64,
         lora_dropout=0.05,
         target_modules=["q", "k", "v", "o", "wi_0", "wi_1", "wo"],
+        modules_to_save=["lm_head"],  # also FULLY train the output head (cheap on ByT5's tiny vocab) so it can emit exact tokens
     )
     model = get_peft_model(model, lora)
     model.print_trainable_parameters()
@@ -91,8 +94,8 @@ def main() -> None:
     args = Seq2SeqTrainingArguments(
         output_dir=str(OUT),
         per_device_train_batch_size=16,
-        learning_rate=3e-4,
-        num_train_epochs=100,       # tiny data → many passes to fully memorise it
+        learning_rate=1e-3,         # higher: the 3e-4 runs plateaued before converging
+        num_train_epochs=120,       # tiny data → many passes to fully memorise it
         logging_steps=25,
         save_strategy="no",
         report_to="none",

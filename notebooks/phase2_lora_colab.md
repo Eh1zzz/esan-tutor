@@ -38,15 +38,20 @@ T4 GPU finishes this in a few minutes.
   Seeing a general-purpose model bend to output *your* language, from adapters
   you trained on data *you* curated, is the payoff.
 
-## Why mT5 (subword), not ByT5?
-Esan uses `ọ` and `ẹ` (dotted letters), so the worry was a subword tokenizer would
-map them to `<unk>`. We **checked**: mT5's tokenizer keeps them intact (it trained
-on Yoruba/Igbo, which use the same letters), encoding each word in 2–4 pieces.
-ByT5 (byte-level) is `<unk>`-proof, but every word becomes a long byte string —
-too hard to memorise from ~330 examples (it underfit: loss stalled ~0.8 and the
-output was gibberish). Lesson: **byte-level is robust but data-hungry; on tiny
-data, a subword model that already covers your characters wins** — so verify
-tokenizer coverage before assuming.
+## The debugging story (this is the real lesson)
+Getting this to actually translate took three tries — a genuine ML debugging arc:
+1. **ByT5, small adapter** → loss stalled ~0.8, output was one repeated phrase.
+2. **Switched to mT5** (subword, thought it'd memorise easier) → loss stalled
+   *higher* (~2.4) and still collapsed. Its 250K-token **frozen output head**
+   can't emit rare Esan pieces — so it was worse, not better.
+3. **Diagnosis:** both runs *underfit* — the model learned the prior (one common
+   output) and ignored the input. Fixes: go back to **ByT5** (tiny byte vocab →
+   output head isn't a bottleneck; ọ/ẹ exact), **also train the output head**
+   (`modules_to_save=["lm_head"]`, cheap on ByT5), and **raise the learning rate**
+   so the loss reaches near zero instead of stalling.
+
+Takeaway: **collapse to one output = underfitting.** Look at the frozen pieces
+(here, the output head) and the learning rate before blaming the data.
 
 ## Experiment
 - `r` (LoRA rank) and `target_modules` in `finetune_lora.py` → adapter capacity.
