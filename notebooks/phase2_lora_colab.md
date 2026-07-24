@@ -11,7 +11,7 @@ T4 GPU finishes this in a few minutes.
 ```python
 !git clone https://github.com/Eh1zzz/esan-tutor.git
 %cd esan-tutor
-!pip install -q "transformers>=4.46" "peft>=0.11" "datasets>=2.19" accelerate
+!pip install -q "transformers>=4.46" "peft>=0.11" "datasets>=2.19" accelerate sentencepiece protobuf
 !pip uninstall -q -y torchao   # Colab ships an old torchao that trips PEFT's version check; we don't use it
 ```
 
@@ -38,12 +38,15 @@ T4 GPU finishes this in a few minutes.
   Seeing a general-purpose model bend to output *your* language, from adapters
   you trained on data *you* curated, is the payoff.
 
-## Why byte-level (ByT5)?
-Esan uses `ọ` and `ẹ` (dotted letters). A subword tokenizer (mT5, etc.) may not
-have those in its vocabulary and would map them to `<unk>` — the model literally
-can't see the difference between `ọ` and `o`. **ByT5 reads raw bytes**, so every
-character is represented exactly. For a low-resource language with special
-orthography, byte-level models remove a whole class of silent bugs.
+## Why mT5 (subword), not ByT5?
+Esan uses `ọ` and `ẹ` (dotted letters), so the worry was a subword tokenizer would
+map them to `<unk>`. We **checked**: mT5's tokenizer keeps them intact (it trained
+on Yoruba/Igbo, which use the same letters), encoding each word in 2–4 pieces.
+ByT5 (byte-level) is `<unk>`-proof, but every word becomes a long byte string —
+too hard to memorise from ~330 examples (it underfit: loss stalled ~0.8 and the
+output was gibberish). Lesson: **byte-level is robust but data-hungry; on tiny
+data, a subword model that already covers your characters wins** — so verify
+tokenizer coverage before assuming.
 
 ## Experiment
 - `r` (LoRA rank) and `target_modules` in `finetune_lora.py` → adapter capacity.

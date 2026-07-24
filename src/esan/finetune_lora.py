@@ -13,9 +13,11 @@ What you'll learn here — the machinery behind every "fine-tuned" model:
 Honest expectation: with ~330 examples the model will largely **memorise** the
 dictionary rather than generalise. That's fine — the goal is the *method*.
 
-Base = google/byt5-small: a BYTE-LEVEL T5. It reads raw bytes, so it has no
-tokenizer-vocabulary gaps — Esan's ọ and ẹ are represented exactly. (A subword
-model like mt5-small can silently map rare glyphs to <unk>.)
+Base = google/mt5-small: a multilingual T5. Its subword tokenizer encodes each
+word in just 2–4 pieces, so a small dictionary is easy to memorise. We verified it
+keeps Esan's ọ and ẹ intact (no <unk>) — mT5 trained on Yoruba/Igbo, which use the
+same dotted letters. (ByT5, byte-level, is <unk>-proof but needs long byte
+sequences per word — too hard to memorise from ~330 examples; it underfit.)
 
 Run (Colab T4 recommended — see notebooks/phase2_lora_colab.md):
     pip install "transformers>=4.41" "peft>=0.11" "datasets>=2.19" accelerate
@@ -43,8 +45,8 @@ try:
 except Exception:
     pass
 
-BASE = "google/byt5-small"
-MAX_LEN = 128  # byte-level → more bytes per word/sentence than a subword model
+BASE = "google/mt5-small"  # subword multilingual T5; keeps ọ/ẹ intact (verified)
+MAX_LEN = 64
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data" / "processed" / "finetune.jsonl"
 OUT = ROOT / "checkpoints" / "esan-byt5-lora"

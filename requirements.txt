@@ -11,6 +11,6 @@ pandas>=2.0           # tabular data (vocab.csv etc.)
 # Set ANTHROPIC_API_KEY in your environment before running it.
 anthropic>=0.40
 # Phase 2 v3 — LoRA fine-tuning (src/esan/finetune_lora.py). Runs in Colab (has a
-# GPU); these get pip-installed there. Base model google/byt5-small is byte-level,
-# so no sentencepiece needed.
-#   transformers>=4.46   peft>=0.11   datasets>=2.19   accelerate
+# GPU); these get pip-installed there. Base model google/mt5-small needs
+# sentencepiece + protobuf for its tokenizer.
+#   transformers>=4.46   peft>=0.11   datasets>=2.19   accelerate   sentencepiece   protobuf
