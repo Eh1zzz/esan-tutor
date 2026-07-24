@@ -10,7 +10,8 @@ pandas>=2.0           # tabular data (vocab.csv etc.)
 # Phase 2 v2 — conversational tutor (src/esan/tutor_llm.py): the official Anthropic SDK.
 # Set ANTHROPIC_API_KEY in your environment before running it.
 anthropic>=0.40
-# Phase 2 v3 — LoRA fine-tuning (src/esan/finetune_lora.py). Runs in Colab (has a
-# GPU); these get pip-installed there. Base model google/mt5-small needs
-# sentencepiece + protobuf for its tokenizer.
-#   transformers>=4.46   peft>=0.11   datasets>=2.19   accelerate   sentencepiece   protobuf
+# Phase 2 v3 — fine-tuning the Esan translator (src/esan/finetune.py). Runs in Colab
+# (GPU); these get pip-installed there. Full fine-tune of google/byt5-small, which is
+# byte-level (no tokenizer deps). (We started with LoRA — see notebooks/phase2_lora_colab.md
+# for why full fine-tuning won; `peft` is only needed if you revisit the LoRA version.)
+#   transformers>=4.46   datasets>=2.19   accelerate

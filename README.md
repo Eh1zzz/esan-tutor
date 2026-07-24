@@ -42,13 +42,14 @@ Claude *all* of it as ground truth every turn (the honest "RAG" for a tiny corpu
 Claude teaches and converses; the data stops it inventing Esan it doesn't know.
 Needs `pip install anthropic` and `ANTHROPIC_API_KEY` set in your environment.
 
-**v3 — fine-tune (LoRA), built:** `src/esan/build_finetune_data.py` →
-`src/esan/finetune_lora.py`. Adapts **google/byt5-small** (byte-level → no
-tokenizer gaps for ọ/ẹ) to translate English⇄Esan with LoRA/PEFT. Teaches base
-models, adapters, the seq2seq training loop, and evaluation. Runs on a free Colab
-GPU — see `notebooks/phase2_lora_colab.md`. The dataset is thin, so it mostly
-memorises the dictionary: a *learning* exercise, and a live demo of "the model is
-easy, the data is everything."
+**v3 — fine-tune a translator, built:** `src/esan/build_finetune_data.py` →
+`src/esan/finetune.py`. Fine-tunes **google/byt5-small** (byte-level → ọ/ẹ exact)
+to translate English⇄Esan. Started with **LoRA**; on this tiny dataset LoRA
+underfit (the decoder ignored the source and collapsed to one output), so it uses
+**full fine-tuning** — a genuine debugging arc about adapters vs full FT, base
+models, and diagnosing underfitting (see `notebooks/phase2_lora_colab.md`). The
+data is thin, so it memorises the dictionary: a *learning* exercise, and a live
+demo of "the model is easy, the data is everything."
 
 - **Deliverable:** a conversational Esan tutor ✅ + a from-scratch LM ✅ + a
   LoRA-fine-tuned translator ✅.

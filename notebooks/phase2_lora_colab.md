@@ -1,8 +1,11 @@
-# Phase 2 v3 in Google Colab — LoRA fine-tune an Esan translator
+# Phase 2 v3 in Google Colab — fine-tune an Esan translator
 
-`src/esan/finetune_lora.py` fine-tunes **google/byt5-small** to translate
-English⇄Esan using **LoRA** (train tiny adapters, freeze the base model). A free
-T4 GPU finishes this in a few minutes.
+`src/esan/finetune.py` fine-tunes **google/byt5-small** to translate English⇄Esan.
+A free T4 GPU finishes it in ~15 minutes.
+
+> We *started* with LoRA (parameter-efficient adapters) and it kept underfitting on
+> this tiny dataset — see **The debugging story** below. The script now does **full
+> fine-tuning**, which reliably memorises the dictionary.
 
 ## 1. Open Colab with a GPU
 **Runtime → Change runtime type → T4 GPU → Save.**
@@ -11,57 +14,55 @@ T4 GPU finishes this in a few minutes.
 ```python
 !git clone https://github.com/Eh1zzz/esan-tutor.git
 %cd esan-tutor
-!pip install -q "transformers>=4.46" "peft>=0.11" "datasets>=2.19" accelerate sentencepiece protobuf
-!pip uninstall -q -y torchao   # Colab ships an old torchao that trips PEFT's version check; we don't use it
+!pip install -q "transformers>=4.46" "datasets>=2.19" accelerate
 ```
-
-> **If you see `ImportError: Found an incompatible version of torchao`** — that's
-> the line above fixing it. `torchao` (low-bit quantization) isn't needed here;
-> removing it makes PEFT's check pass.
 
 ## 3. Build the data + train
 ```python
 !python src/esan/build_finetune_data.py   # -> data/processed/finetune.jsonl (330 examples)
-!python src/esan/finetune_lora.py
+!python src/esan/finetune.py
 ```
 
 ## What to watch (the learning payoff)
-- **`trainable params`** printed at the start — LoRA trains a *tiny* fraction
-  (often <0.1%) of the model. That's the whole point of PEFT: adapt a big model
-  cheaply.
-- **train loss ↓** over the 100 epochs, ideally well below ~0.5 — the adapter is
-  memorising the dictionary. There's deliberately **no eval set**: a bilingual
-  dictionary has nothing to generalise to (an unseen word can't be inferred), so
-  a held-out split just measures the impossible. Training on everything is the
-  honest move, and memorisation is the goal here — not a bug.
-- **The sample translations** at the end — `cow → ẹmena`, `water → amẹn`, etc.
-  Seeing a general-purpose model bend to output *your* language, from adapters
-  you trained on data *you* curated, is the payoff.
+- **train loss ↓ toward ~0** over the 50 epochs — full fine-tuning can actually
+  drive the loss down (LoRA floored at ~0.8; see below). There's deliberately **no
+  eval set**: a bilingual dictionary has nothing to generalise to (an unseen word
+  can't be inferred), so a held-out split just measures the impossible. Training on
+  everything is the honest move — memorisation is the goal here, not a bug.
+- **The sample translations** at the end — `cow → ẹmena`, `water → amẹn`,
+  `moon → uki`, etc. Seeing a general-purpose model bend to output *your* language,
+  from data *you* curated, is the payoff.
 
 ## The debugging story (this is the real lesson)
-Getting this to actually translate took three tries — a genuine ML debugging arc:
-1. **ByT5, small adapter** → loss stalled ~0.8, output was one repeated phrase.
-2. **Switched to mT5** (subword, thought it'd memorise easier) → loss stalled
-   *higher* (~2.4) and still collapsed. Its 250K-token **frozen output head**
-   can't emit rare Esan pieces — so it was worse, not better.
-3. **Diagnosis:** both runs *underfit* — the model learned the prior (one common
-   output) and ignored the input. Fixes: go back to **ByT5** (tiny byte vocab →
-   output head isn't a bottleneck; ọ/ẹ exact), **also train the output head**
-   (`modules_to_save=["lm_head"]`, cheap on ByT5), and **raise the learning rate**
-   so the loss reaches near zero instead of stalling.
+Getting this to translate took several tries — a genuine ML debugging arc:
+1. **ByT5 + LoRA (small adapter)** → loss stalled ~0.8; output was one repeated phrase.
+2. **Switched to mT5** (subword, thought it'd memorise easier) → loss stalled *higher*
+   (~2.4) and still collapsed. Its 250K-token frozen output head can't emit rare
+   Esan pieces — worse, not better.
+3. **Bigger adapter, train the output head, 3× the learning rate** → the ByT5 loss
+   *still* floored at ~0.8 and collapsed to one phrase for **every** input.
+4. **Diagnosis:** a loss floor that won't move for capacity, LR, or the output head
+   is **structural**, not a hyperparameter. The decoder was ignoring the encoder —
+   it learned a good *unconditional* model of Esan text (that ~0.8 ≈ the byte-level
+   entropy of the targets) and never learned to look at the source. LoRA's frozen
+   encoder / cross-attention was the wall.
+5. **Fix: full fine-tuning.** Every weight updates, so the model can wire
+   source→target. The loss drops toward zero and the translations come out right.
 
-Takeaway: **collapse to one output = underfitting.** Look at the frozen pieces
-(here, the output head) and the learning rate before blaming the data.
+Takeaways:
+- **Collapse to one output = the decoder ignoring the input** (underfitting). A loss
+  floor immune to LR/capacity is a *structural* clue, not a tuning problem.
+- **LoRA shines with a capable base and enough data; for tiny memorisation tasks,
+  full fine-tuning is more reliable.** Knowing which to reach for is the skill.
 
 ## Experiment
-- `r` (LoRA rank) and `target_modules` in `finetune_lora.py` → adapter capacity.
-- `num_train_epochs` → more passes = lower loss (until it just memorises).
+- `num_train_epochs`, `learning_rate` in `finetune.py`.
 - Add more data upstream (grow `vocab.csv` / `pairs.jsonl`, re-run `normalize.py`
-  and `build_finetune_data.py`) — **this** is what actually improves the model.
+  then `build_finetune_data.py`) — **this** is what actually improves the model.
 
 ## Honest takeaway
-With ~330 examples this memorises a bilingual dictionary; it won't translate
-unseen sentences well. That's the real lesson of low-resource NLP: **the model is
-easy, the data is everything.** The path to a genuinely good Esan translator is
-more sentence pairs (from the textbook's dialogues, and from your speakers) — the
-same human-in-the-loop curation that built the dataset in the first place.
+With ~330 examples this memorises a bilingual dictionary; it won't translate unseen
+sentences. That's the real lesson of low-resource NLP: **the model is easy, the data
+is everything.** The path to a genuinely good Esan translator is more *sentence*
+pairs — from the textbook's dialogues and, later, your speakers — the same
+human-in-the-loop curation that built the dataset in the first place.
